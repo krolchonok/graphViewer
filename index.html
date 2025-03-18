@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Генератор графиков</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Генератор графиков</h1>
+      </header>
+      <section class="chart-section">
+        <div class="chart-container">
+          <canvas id="chart"></canvas>
+        </div>
+        <button class="btn download" onclick="downloadChart()">
+          Сохранить PNG
+        </button>
+      </section>
+
+      <section class="bulk-input-section">
+        <div class="separator-selection">
+          <form id="separate">
+            Разделитель: 
+            <div class="radio-group">
+              <input type="radio" id="tab" name="separate" value="tab" />
+              <label for="tab">tab (из Excel)</label>
+            </div>
+
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="zap"
+                name="separate"
+                value="zap"
+                checked
+              />
+              <label for="zap">Запятая</label>
+            </div>
+
+            <div class="radio-group">
+              <input type="radio" id="space" name="separate" value="space" />
+              <label for="space">Пробел</label>
+            </div>
+          </form>
+        </div>
+
+        <textarea
+          id="dataInput"
+          placeholder="Введите данные в формате X,Y по одной строке"
+        ></textarea>
+
+        <button class="btn secondary" onclick="addBulkData()">
+          Добавить данные
+        </button>
+      </section>
+
+      <section class="input-section">
+        <div class="input-group">
+          <input type="number" id="xValue" placeholder="X-значение" />
+          <input type="number" id="yValue" placeholder="Y-значение" />
+          <button class="btn primary" onclick="addData()">
+            Добавить точку
+          </button>
+        </div>
+      </section>
+      <div id="errorMessage" class="error-message hidden"></div>
+
+
+      <section class="customization-section">
+        <h2>Кастомизация графика</h2>
+        <div class="input-group">
+          <label for="lineColor">Цвет линии:</label>
+          <input type="color" id="lineColor" value="#4a6fdc" />
+          <label for="pointColor">Цвет точек:</label>
+          <input type="color" id="pointColor" value="#4a6fdc" />
+          <label for="backgroundColor">Цвет клеток графика:</label>
+          <input type="color" id="backgroundColor" value="#808080" />
+          <button class="btn primary" onclick="applyCustomization()">
+            Применить
+          </button>
+        </div>
+      </section>
+      <section class="data-table-section">
+        <h2>Данные</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>X</th>
+              <th>Y</th>
+              <th>Действия</th>
+            </tr>
+          </thead>
+          <tbody id="dataTable"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
